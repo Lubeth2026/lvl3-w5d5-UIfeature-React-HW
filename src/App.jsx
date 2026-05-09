@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import './App.css'
 import Players from './components/Players';
 import Filter from './components/Filter';
+import Sort from './components/Sort';
 
 function App() {
 //GET fetch Data from API//
@@ -17,6 +18,8 @@ function App() {
    const [totalPages, setTotalPages] = useState(1);
 //Filter Status State//
     const [filterStatus, setFilterStatus] = useState("ALL");
+//Sort Name State//
+    const [sortOrder, setSortOrder] = useState("default");
 
   useEffect(() => {
     async function getData() {
@@ -54,10 +57,18 @@ function App() {
       </div>
       {errors && <p>{errors}</p>}
       <Filter filterStatus={filterStatus} setFilterStatus={setFilterStatus}/>
+      <Sort sortOrder={sortOrder} setSortOrder={setSortOrder}/>
       {characters.filter((character)=>{
         if(filterStatus === "All"){
           return true;
         } return character.status === filterStatus;
+      }).sort((a, b)=>{
+        if(sortOrder === "asc"){
+          return a.name.localeCompare(b.name);
+        } 
+        if(sortOrder === "desc"){
+          return b.name.localeCompare(a.name);
+        } return 0;
       }).map((character) => (
         <Players key={character.id} name={character.name} id={character.id} status={character.status} 
         created={character.created} image={character.image}/>))}
