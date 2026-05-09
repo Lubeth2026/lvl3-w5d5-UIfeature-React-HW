@@ -1,11 +1,14 @@
 
 import { useEffect, useState } from 'react'
 import './App.css'
+import Players from './components/Players';
 
 function App() {
 //GET fetch Data from API//
     const [characters, setCharacters] = useState([]);
     const [errors, setErrors] = useState("");
+//NEW State//
+    const [showCharacters, setShowCharacters] = useState(true);
 
     useEffect(()=>{
       async function getData() {
@@ -26,6 +29,10 @@ function App() {
     <div>
       <h1>React UI Feature! (W5D5)</h1>
       <h2>!Rick & Morty!</h2>
+      {characters.map((character)=>(
+        <Players key={character.id} name={character.name} id={character.id} 
+        status={character.status} created={character.created} image={character.image}/>
+      ))}
     </div>
   )
 }
