@@ -1,16 +1,43 @@
-# React + Vite
+# React UI Feature App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a React app that fetches character data from the Rick & Morty API & displays the characters on the page. The app includes pagination, filtering, and sorting features.
 
-Currently, two official plugins are available:
+## Features Added
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+1. API Fetching
+- Fetches character data from the API 
+- Displays: {name, id, status, created date, & image}
+2. Pagination Feature (Users can:)
+- Navigate between pages using: prev/next button
+- View current page number
+3. Filter Feature
+- Filter component was added to filter characters by status
+- Users can filter: {all, alive, dead, unknown}
+4. Sort Feature
+- Sort component was added to sort characters alphabetically by API character name
+- Users can sort: {a-z, z-a}
 
-## React Compiler
+### Installation
+1. Install Dependencies
+npm install
+2. Start Server
+npm run dev
+3. Open Browser
+http://localhost:5173
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+#### How to Test the Feature
+- Test Pagination
+1. Click Next Button
+2. Verify New Characters Appear
+3. Click Prev Button
+4. Verify previous page characters appear
 
-## Expanding the ESLint configuration
+- Test Filter Feature
+1. Open the Status Filter dropdown
+2. Select: 
+3. Verify only the matching characters display
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Test Sort Feature
+1. Open the Sort dropdown
+2. Select:
+3. Verify character names sort alphabetically, & reverse also
