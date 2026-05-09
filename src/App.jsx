@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import './App.css'
 import Players from './components/Players';
+import Filter from './components/Filter';
 
 function App() {
 //GET fetch Data from API//
@@ -14,6 +15,8 @@ function App() {
    const [page, setPage] = useState(1);
 //Total Pages of Characters from API//
    const [totalPages, setTotalPages] = useState(1);
+//Filter Status State//
+    const [filterStatus, setFilterStatus] = useState("ALL");
 
   useEffect(() => {
     async function getData() {
@@ -50,16 +53,14 @@ function App() {
         <button onClick={() => setPage((prev) => prev + 1)} disabled={page === totalPages}>Next</button>
       </div>
       {errors && <p>{errors}</p>}
-      {characters.map((character) => (
-        <Players
-          key={character.id}
-          name={character.name}
-          id={character.id}
-          status={character.status}
-          created={character.created}
-          image={character.image}
-        />
-      ))}
+      <Filter filterStatus={filterStatus} setFilterStatus={setFilterStatus}/>
+      {characters.filter((character)=>{
+        if(filterStatus === "All"){
+          return true;
+        } return character.status === filterStatus;
+      }).map((character) => (
+        <Players key={character.id} name={character.name} id={character.id} status={character.status} 
+        created={character.created} image={character.image}/>))}
     </div>
   );
 }
