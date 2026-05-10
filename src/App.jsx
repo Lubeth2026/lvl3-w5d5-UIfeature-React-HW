@@ -51,7 +51,7 @@ function App() {
       <h2>!Rick & Morty!</h2>
       {/*Pagination Buttons prev/next*/}
       <div style={{ marginTop: "20px" }}>
-        <button onClick={() => setPage((prev) => prev + 1)} disabled={page === 1}>Prev</button>
+        <button onClick={() => setPage((prev) => prev - 1)} disabled={page === 1}>Prev</button>
         <span style={{ margin: "0 10px" }}>Page {page} of {totalPages}</span>
         <button onClick={() => setPage((prev) => prev + 1)} disabled={page === totalPages}>Next</button>
       </div>
